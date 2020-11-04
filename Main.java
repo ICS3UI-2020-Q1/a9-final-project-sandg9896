@@ -18,6 +18,12 @@ public class Main implements Runnable, ActionListener{
   JButton paper2;
   JButton scissors2;
 
+  JButton submit;
+  JButton reset;
+
+  String player1;
+  String player2;
+
   JTextArea outputArea;
   // Method to assemble our GUI
   public void run(){
@@ -53,6 +59,8 @@ public class Main implements Runnable, ActionListener{
    paper2 = new JButton("Paper");
    scissors1 = new JButton("Scissors");
    scissors2 = new JButton("Scissors");
+   submit = new JButton("Submit");
+   reset = new JButton("Reset");
    // set the location and size of the buttons
    rock1.setBounds(217, 50, 150, 35);
    rock2.setBounds(417, 50, 150, 35);
@@ -60,6 +68,8 @@ public class Main implements Runnable, ActionListener{
    paper2.setBounds(417, 100, 150, 35);
    scissors1.setBounds(217, 150, 150, 35);
    scissors2.setBounds(417, 150, 150, 35);
+   submit.setBounds(300, 200, 200, 35);
+   reset.setBounds(300, 250, 200, 35);
    // add the actionListener to the buttons
    rock1.addActionListener(this);
    rock2.addActionListener(this); 
@@ -67,6 +77,8 @@ public class Main implements Runnable, ActionListener{
    paper2.addActionListener(this);
    scissors1.addActionListener(this);
    scissors2.addActionListener(this);
+   submit.addActionListener(this);
+   reset.addActionListener(this);
    // give each button an actionCommand
    rock1.setActionCommand("rock1");
    rock2.setActionCommand("rock2");
@@ -74,6 +86,8 @@ public class Main implements Runnable, ActionListener{
    paper2.setActionCommand("paper2");
    scissors1.setActionCommand("scissors1");
    scissors2.setActionCommand("scissors2");
+   submit.setActionCommand("submit");
+   reset.setActionCommand("reset");
    // add the buttons to the main panel
    mainPanel.add(rock1);
    mainPanel.add(rock2);
@@ -81,23 +95,79 @@ public class Main implements Runnable, ActionListener{
    mainPanel.add(paper2);
    mainPanel.add(scissors1);
    mainPanel.add(scissors2);
+   mainPanel.add(submit);
+   mainPanel.add(reset);
+  
+   // initialize player 1 and player 2
+   player1 = ("");
+   player2 = (""); 
    
    // initialize the JButton
    outputArea = new JTextArea();
    // set the location and size of the button
-   outputArea.setBounds(300, 200, 200, 35);
+   outputArea.setBounds(300, 300, 200, 35);
    // disable the textArea so that the user can't type
    outputArea.setEnabled(false);
    // add the buttons to the main panel
    mainPanel.add(outputArea);
+  
   }
 
   // method called when a button is pressed
   public void actionPerformed(ActionEvent e){
     // get the command from the action
     String command = e.getActionCommand();
+    if(command.equals("rock1"))
+    player1 ="rock1";
+    if(command.equals("rock2"))
+    player2 = "rock2";
+    if(command.equals("paper1"))
+    player1 = "paper1";
+    if(command.equals("paper2"))
+    player2 = "paper2";
+    if(command.equals("scissors1"))
+    player1 = "scissors1";
+    if(command.equals("scissors2"))
+    player2 = "scissors2";
 
-  }
+    // get text from each text boxes
+    String nameOne = name1.getText();
+    String nameTwo = name2.getText();   
+    
+    if(command.equals("submit")){
+      if(player1.equals("rock1") && player2.equals("paper2")){
+        outputArea.setText(nameTwo + " has won");
+      }
+      if(player1.equals("rock1") && player2.equals("scissors2")){
+        outputArea.setText(nameOne + " has won");
+      }
+      if(player1. equals("rock1") && player2.equals("rock2")){
+        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+      }
+      if(player1.equals("paper1") && player2.equals("scissors2")){
+        outputArea.setText(nameTwo + " has won");
+      }
+      if(player1.equals("paper1") && player2.equals("rock2")){
+        outputArea.setText(nameOne + " has won");
+      }
+      if(player1. equals("paper1") && player2.equals("paper2")){
+        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+      }
+      if(player1.equals("scissors1") && player2.equals("rock2")){
+        outputArea.setText(nameTwo + " has won");
+      }
+      if(player1.equals("scissors1") && player2.equals("paper2")){
+        outputArea.setText(nameOne + " has won");
+      }
+      if(player1. equals("scissors1") && player2.equals("scissors2")){
+        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+      }
+     }
+     if(command.equals("reset")){
+     // clear all the texts in the text boxes
+     outputArea.setText("");
+    }
+   }
 
   // Main method to start our program
   public static void main(String[] args){
