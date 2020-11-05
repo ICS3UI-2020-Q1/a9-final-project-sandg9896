@@ -27,15 +27,15 @@ public class Main implements Runnable, ActionListener{
   JTextArea outputArea;
   // Method to assemble our GUI
   public void run(){
-    // Creats a JFrame that is 800 pixels by 600 pixels, and closes when you click on the X
-    JFrame frame = new JFrame("Title");
-    // Makes the X button close the program
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    // makes the windows 800 pixel wide by 600 pixels tall
-    frame.setSize(800,600);
-    // shows the window
-    frame.setVisible(true);
-    // initialize the main JPanel
+   // Creats a JFrame that is 800 pixels by 600 pixels, and closes when you click on the X
+   JFrame frame = new JFrame("Rock, Paper, Scissors");
+   // Makes the X button close the program
+   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   // makes the windows 800 pixel wide by 600 pixels tall
+   frame.setSize(800,600);
+   // shows the window
+   frame.setVisible(true);
+   // initialize the main JPanel
    mainPanel = new JPanel();
    // turn on the manual layouts
    mainPanel.setLayout(null);
@@ -102,78 +102,80 @@ public class Main implements Runnable, ActionListener{
    player1 = ("");
    player2 = (""); 
    
-   // initialize the JButton
+   // initialize the output area
    outputArea = new JTextArea();
-   // set the location and size of the button
+   // set the location and size of the output area
    outputArea.setBounds(300, 300, 200, 35);
-   // disable the textArea so that the user can't type
+   // disable the output area so that the user can't type
    outputArea.setEnabled(false);
-   // add the buttons to the main panel
+   // add the output area to the main panel
    mainPanel.add(outputArea);
-  
-  }
+ }
 
   // method called when a button is pressed
   public void actionPerformed(ActionEvent e){
-    // get the command from the action
-    String command = e.getActionCommand();
-    if(command.equals("rock1"))
-    player1 ="rock1";
-    if(command.equals("rock2"))
-    player2 = "rock2";
-    if(command.equals("paper1"))
-    player1 = "paper1";
-    if(command.equals("paper2"))
-    player2 = "paper2";
-    if(command.equals("scissors1"))
-    player1 = "scissors1";
-    if(command.equals("scissors2"))
-    player2 = "scissors2";
+   // get the command from the action
+   String command = e.getActionCommand();
+   if(command.equals("rock1"))
+   player1 ="rock1";
+   if(command.equals("rock2"))
+   player2 = "rock2";
+   if(command.equals("paper1"))
+   player1 = "paper1";
+   if(command.equals("paper2"))
+   player2 = "paper2";
+   if(command.equals("scissors1"))
+   player1 = "scissors1";
+   if(command.equals("scissors2"))
+   player2 = "scissors2";
 
-    // get text from each text boxes
-    String nameOne = name1.getText();
-    String nameTwo = name2.getText();   
-    
-    if(command.equals("submit")){
-      if(player1.equals("rock1") && player2.equals("paper2")){
-        outputArea.setText(nameTwo + " has won");
-      }
-      if(player1.equals("rock1") && player2.equals("scissors2")){
-        outputArea.setText(nameOne + " has won");
-      }
-      if(player1. equals("rock1") && player2.equals("rock2")){
-        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
-      }
-      if(player1.equals("paper1") && player2.equals("scissors2")){
-        outputArea.setText(nameTwo + " has won");
-      }
-      if(player1.equals("paper1") && player2.equals("rock2")){
-        outputArea.setText(nameOne + " has won");
-      }
-      if(player1. equals("paper1") && player2.equals("paper2")){
-        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
-      }
-      if(player1.equals("scissors1") && player2.equals("rock2")){
-        outputArea.setText(nameTwo + " has won");
-      }
-      if(player1.equals("scissors1") && player2.equals("paper2")){
-        outputArea.setText(nameOne + " has won");
-      }
-      if(player1. equals("scissors1") && player2.equals("scissors2")){
-        outputArea.setText(nameOne + " and " + nameTwo + " have tied");
-      }
+   // get text from each text boxes
+   String nameOne = name1.getText();
+   String nameTwo = name2.getText();  
+
+   // calculate who has won and let the players know when submit is pressed
+   if(command.equals("submit")){
+     if(player1.equals("rock1") && player2.equals("paper2")){
+     outputArea.setText(nameTwo + " has won");
      }
-     if(command.equals("reset")){
-     // clear all the texts in the text boxes
-     outputArea.setText("");
-    }
+     if(player1.equals("rock1") && player2.equals("scissors2")){
+     outputArea.setText(nameOne + " has won");
+     }
+     if(player1. equals("rock1") && player2.equals("rock2")){
+     outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+     }
+     if(player1.equals("paper1") && player2.equals("scissors2")){
+     outputArea.setText(nameTwo + " has won");
+     }
+     if(player1.equals("paper1") && player2.equals("rock2")){
+     outputArea.setText(nameOne + " has won");
+     }
+     if(player1. equals("paper1") && player2.equals("paper2")){
+     outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+     }
+     if(player1.equals("scissors1") && player2.equals("rock2")){
+     outputArea.setText(nameTwo + " has won");
+     }
+     if(player1.equals("scissors1") && player2.equals("paper2")){
+        outputArea.setText(nameOne + " has won");
+     }
+     if(player1. equals("scissors1") && player2.equals("scissors2")){
+     outputArea.setText(nameOne + " and " + nameTwo + " have tied");
+     }
    }
+   
+   // when reset is clicked, it clears the outputArea for the users to play again
+   if(command.equals("reset")){
+   // clear all the texts in the text boxes
+   outputArea.setText("");
+   }
+ }
 
-  // Main method to start our program
-  public static void main(String[] args){
-    // Creates an instance of our program
-    Main gui = new Main();
-    // Lets the computer know to start it in the event thread
-    SwingUtilities.invokeLater(gui);
+   // Main method to start our program
+   public static void main(String[] args){
+   // Creates an instance of our program
+   Main gui = new Main();
+   // Lets the computer know to start it in the event thread
+   SwingUtilities.invokeLater(gui);
   }
 }
